@@ -1,0 +1,56 @@
+body{
+	background: #222;
+	background-image: url("../resources/bg.png");
+	background-repeat: repeat-x repeat-y;
+	padding: 0;
+}
+
+#container {
+	
+}
+
+#main {
+	padding: 0;
+	height: 100%;
+	position: relative;
+}
+	
+	#main #main-video {
+		width: 100%;
+		position: absolute;
+	}
+
+	#main #main-canvas {
+		width: 100%;
+		position: absolute;
+	}
+
+#menu {
+	width: 100px;
+	/*background: #222;*/
+	padding: 5px;
+	position: absolute;
+}
+
+	#menu a{
+		width: 100%;
+		padding: 10px;
+		margin-bottom: 1px;
+		font-family: roboto slab, sans-serif;
+		font-size: 0.8em;
+		color: #eee;
+		background: #333;
+		border-radius: 0;
+		border: none;
+	}
+	#menu a:hover{
+		color: #333;
+		background: #eee;
+		-webkit-transition: background 0.3s, color 0.3s;
+		transition: background 0.3s, color 0.3s;
+	}
+
+	@media (max-width: 992px) {
+	  
+
+	}
