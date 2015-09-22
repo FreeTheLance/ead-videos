@@ -12,23 +12,26 @@
   </head>
 
   <body>
-    <video id="video1" controls><source src="videos/video1.mp4" type="video/mp4"></video>
-    <video id="video1_1" controls preload="none"><source src="videos/video1_1.mp4" type="video/mp4"></video>
-    <video id="video2" controls preload="none"><source src="videos/video2.mp4" type="video/mp4"></video>
-    <video id="video2_1" controls preload="none"><source src="videos/video2_1.mp4" type="video/mp4"></video>
-    <video id="video3" controls preload="none"><source src="videos/video3.mp4" type="video/mp4"></video>
-    <video id="video4" controls preload="none"><source src="videos/video4.mp4" type="video/mp4"></video>
-    <video id="video4_1" controls preload="none"><source src="videos/video4_1.mp4" type="video/mp4"></video>
-    <video id="video5" controls preload="none"><source src="videos/video5.mp4" type="video/mp4"></video>
-    <video id="video5_1" controls preload="none"><source src="videos/video5_1.mp4" type="video/mp4"></video>
-    <video id="video6" controls preload="none"><source src="videos/video6.mp4" type="video/mp4"></video>
-    <video id="video6_1" controls preload="none"><source src="videos/video6_1.mp4" type="video/mp4"></video>
-    <video id="video7" controls preload="none"><source src="videos/video7.mp4" type="video/mp4"></video>
-    <video id="video7_1" controls preload="none"><source src="videos/video7_1.mp4" type="video/mp4"></video>
-    <video id="video8" controls preload="none"><source src="videos/video8.mp4" type="video/mp4"></video>
-    <video id="video8_1" controls preload="none"><source src="videos/video8_1.mp4" type="video/mp4"></video>
-    <video id="video9" controls preload="none"><source src="videos/video9.mp4" type="video/mp4"></video>
-    <video id="encerramento" controls preload="none"><source src="videos/encerramento.mp4" type="video/mp4"></video>
+    <video id="video1" controls class="active" data-video-next="video2"><source src="videos/video1.mp4" type="video/mp4"></video>
+    <video id="video1_1" controls preload="none" data-video-next="video2"><source src="videos/video1_1.mp4" type="video/mp4"></video>
+    <video id="video2" controls preload="none" data-video-next="video3"><source src="videos/video2.mp4" type="video/mp4"></video>
+    <video id="video2_1" controls preload="none" data-video-next="video3"><source src="videos/video2_1.mp4" type="video/mp4"></video>
+    <video id="video3" controls preload="none" data-video-next="video4"><source src="videos/video3.mp4" type="video/mp4"></video>
+    <video id="video4" controls preload="none" data-video-next="video5"><source src="videos/video4.mp4" type="video/mp4"></video>
+    <video id="video4_1" controls preload="none" data-video-next="video5"><source src="videos/video4_1.mp4" type="video/mp4"></video>
+    <video id="video5" controls preload="none" data-video-next="video6"><source src="videos/video5.mp4" type="video/mp4"></video>
+    <video id="video5_1" controls preload="none" data-video-next="video6"><source src="videos/video5_1.mp4" type="video/mp4"></video>
+    <video id="video6" controls preload="none" data-video-next="video7"><source src="videos/video6.mp4" type="video/mp4"></video>
+    <video id="video6_1" controls preload="none" data-video-next="video7"><source src="videos/video6_1.mp4" type="video/mp4"></video>
+    <video id="video7" controls preload="none" data-video-next="video8"><source src="videos/video7.mp4" type="video/mp4"></video>
+    <video id="video7_1" controls preload="none" data-video-next="video8"><source src="videos/video7_1.mp4" type="video/mp4"></video>
+    <video id="video8" controls preload="none" data-video-next="video9"><source src="videos/video8.mp4" type="video/mp4"></video>
+    <video id="video8_1" controls preload="none" data-video-next="video9"><source src="videos/video8_1.mp4" type="video/mp4"></video>
+    <video id="video9" controls preload="none" data-video-next="encerramento"><source src="videos/video9.mp4" type="video/mp4"></video>
+    <video id="encerramento" controls preload="none" data-video-next="video_2"><source src="videos/encerramento.mp4" type="video/mp4"></video>
+
+    <a href="#video1_1" class="changer" data-video-source="video1" data-video-time="2">Ver vídeo video_1</a>
+    <a href="#video2_1" class="changer" data-video-source="video2" data-video-time="2">Ver vídeo video_2</a>
 
     <!-- <div id="menu">
       <a href="#" class="btn btn-default">Projeção</a>

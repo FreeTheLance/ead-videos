@@ -1,22 +1,81 @@
 
 jQuery(function () {
 
-  var $video1 = $('#video1');
-  var $video1_1 = $('#video1_1');
-  var $video2 = $('#video2');
-  var $video2_1 = $('#video2_1');
-  var $video3 = $('#video3');
-  var $video4 = $('#video4');
-  var $video4_1 = $('#video4_1');
-  var $video5 = $('#video5');
-  var $video5_1 = $('#video5_1');
-  var $video6 = $('#video6');
-  var $video6_1 = $('#video6_1');
-  var $video7 = $('#video7');
-  var $video7_1 = $('#video7_1');
-  var $video8 = $('#video8');
-  var $video8_1 = $('#video8_1');
-  var $video9 = $('#video9');
-  var $encerramento = $('#encerramento');
+  var videoIds = [
+    'video1',
+    'video1_1',
+    'video2',
+    'video2_1',
+    'video3',
+    'video4',
+    'video4_1',
+    'video5',
+    'video5_1',
+    'video6',
+    'video6_1',
+    'video7',
+    'video7_1',
+    'video8',
+    'video8_1',
+    'video9',
+    'encerramento'
+  ];
 
+  var videos = {};
+
+  videoIds.forEach(function (id) {
+    videos[id] = {
+      video: Popcorn('#' + id),
+      $element: $('#' + id)
+    };
+  });
+
+  var current = videos['video1'];
+
+  var $changers = $('.changer');
+
+  // Build changers.
+  $changers.each(function () {
+    var $changer = $(this);
+    var sourceId = $changer.data('video-source');
+    var source = videos[sourceId].video;
+    var time = $changer.data('video-time');
+
+    source.cue(time, function () {
+      $changer.addClass('active');
+    });
+
+    $changer.on('click', function () {
+      changeVideo(sourceId);
+    });
+  });
+
+  // Build timelines.
+  $.each(videos, function (id) {
+    var nextVideoId = this.$element.data('video-next');
+
+    this.video.on('ended', function () {
+      if (nextVideoId) {
+        changeVideo(nextVideoId, 0);
+      }
+    });
+  });
+
+  /**
+   * Show a video.
+   */
+  function changeVideo(id, time) {
+    time = time || 0;
+
+    // Pause current video.
+    current.video.pause();
+    current.$element.removeClass('active');
+
+    current = videos[id];
+    current.video.currentTime(time);
+    current.video.play();
+    current.$element.addClass('active');
+  }
+
+  window.changeVideo = changeVideo;
 });

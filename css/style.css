@@ -54,3 +54,36 @@ body{
 
 
 	}
+
+video {
+	transition: all 1000ms;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 100vh;
+	width: 100vw;
+	opacity: 0;
+	/*object-fit: cover;*/
+}
+
+video.active {
+	z-index: 100;
+	opacity: 1;
+}
+
+.changer {
+	position: fixed;
+	right: 5vh;
+	bottom: 5vh;
+	display: none;
+	font-size: 3em;
+	color: white;
+	font-weight: bold;
+	z-index: 1000;
+}
+
+.changer.active {
+	display: block;
+}
