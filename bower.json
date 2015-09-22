@@ -1,0 +1,19 @@
+{
+  "name": "ead-videos",
+  "version": "0.0.1",
+  "homepage": "https://github.com/FreeTheLance/ead-videos",
+  "authors": [
+    "Lucas Constantino Silva <lucasconstantinosilva@gmail.com>"
+  ],
+  "description": "uHuU!",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}
