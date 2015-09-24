@@ -78,4 +78,25 @@ jQuery(function () {
   }
 
   window.changeVideo = changeVideo;
+
+  // Hide thumbnails
+
+  var $thumbnailContainer = $('#thumbnail-container');
+  var $tutorialLink = $('#tutorial-link');
+  var $mainLink = $('#main-link');
+
+  $tutorialLink.on('click', function () {
+    $thumbnailContainer.fadeOut(400);
+
+    changeVideo('tut1')
+
+  });
+
+  $mainLink.on('click', function () {
+    $thumbnailContainer.fadeOut(400);
+
+    changeVideo('video1')
+
+  });
+
 });

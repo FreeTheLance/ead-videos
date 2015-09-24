@@ -5,14 +5,27 @@
     <title>EAD Videos</title>
 
     <!-- Libraries -->
-    <link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.css">
+    <!-- <link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.css"> -->
 
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
 
   <body>
-    <video id="video1" controls class="active" data-video-next="video2"><source src="videos/video1.mp4" type="video/mp4"></video>
+    <div id="thumbnail-container">
+      <a id="tutorial-link" class="thumbnail" href="#">
+        <br><br>Assista ao Tutorial
+      </a>
+
+      <a id="main-link" class="thumbnail" href="#">
+        <div class="hidden">Geometria</div>
+      </a>
+    </div>
+
+    <video id="tut1" controls preload="none"><source src="videos/tut1.mp4" type="video/mp4"></video>
+    <video id="tut1_1" controls preload="none"><source src="videos/tut1_1.mp4" type="video/mp4"></video>
+
+    <video id="video1" controls preload="none" data-video-next="video2"><source src="videos/video1.mp4" type="video/mp4"></video>
     <video id="video1_1" controls preload="none" data-video-next="video2"><source src="videos/video1_1.mp4" type="video/mp4"></video>
     <video id="video2" controls preload="none" data-video-next="video3"><source src="videos/video2.mp4" type="video/mp4"></video>
     <video id="video2_1" controls preload="none" data-video-next="video3"><source src="videos/video2_1.mp4" type="video/mp4"></video>
@@ -28,22 +41,34 @@
     <video id="video8" controls preload="none" data-video-next="video9"><source src="videos/video8.mp4" type="video/mp4"></video>
     <video id="video8_1" controls preload="none" data-video-next="video9"><source src="videos/video8_1.mp4" type="video/mp4"></video>
     <video id="video9" controls preload="none" data-video-next="encerramento"><source src="videos/video9.mp4" type="video/mp4"></video>
-    <video id="encerramento" controls preload="none" data-video-next="video_2"><source src="videos/encerramento.mp4" type="video/mp4"></video>
+    <video id="encerramento" controls preload="none"><source src="videos/encerramento.mp4" type="video/mp4"></video>
 
-    <a href="#video1_1" class="changer" data-video-source="video1" data-video-time="2">Ver vídeo video_1</a>
-    <a href="#video2_1" class="changer" data-video-source="video2" data-video-time="2">Ver vídeo video_2</a>
+    <a href="#video1_1" class="changer" data-video-source="video1" data-video-time="2">Geometria<img class="img-changer" src="img/link.svg"></a>
+    <a href="#video2_1" class="changer" data-video-source="video2" data-video-time="2">Projeção Cilíndrica Ortogonal<img class="img-changer" src="img/soletracao.svg"></a>
 
-    <!-- <div id="menu">
-      <a href="#" class="btn btn-default">Projeção</a>
-      <a href="#" class="btn btn-default">Plano</a>
-      <a href="#" class="btn btn-default">Ângulo 90˚</a>
-    </div> -->
+    <div id="nav-menu">
+      <div id="nav-menu-items">
+        <ul>
+          <li><a>Projeção</a></li>
+          <li><a>Plano</a></li>
+          <li><a>Ângulo de 90˚</a></li>
+        </ul>
+      </div>
+      <a id="nav-menu-button" href="#">+</a>
+    </div>
+
+    <div id="countdown-container">
+
+    </div>
 
     <!-- Library scripts -->
     <script type="text/javascript" src="lib/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="lib/popcorn-js/index.js"></script>
+    <script type="text/javascript" src="lib/progressbar.js/dist/progressbar.js"></script>
 
     <!-- Scripts -->
     <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/countdown.js"></script>
   </body>
 </html>
