@@ -29,12 +29,17 @@ body{
 	}
 
 #thumbnail-container {
+	display: none;
 	position: fixed;
 	z-index: 1000;
 	left: 50%;
 	top: 50%;
 	-webkit-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
+}
+
+body[data-state-name="home"] #thumbnail-container {
+	display: block;
 }
 
 #tutorial-link {
