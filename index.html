@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
 
-  <body>
+  <body data-state-name="home">
     <div id="thumbnail-container">
       <a id="tutorial-link" class="thumbnail" href="#">
         <br><br>Assista ao Tutorial
@@ -23,27 +23,31 @@
     </div>
 
     <!-- Tutorials -->
-    <video id="tut1" controls preload="none"><source src="videos/tut1.mp4" type="video/mp4"></video>
-    <video id="tut1_1" controls preload="none"><source src="videos/tut1_1.mp4" type="video/mp4"></video>
+    <div data-state-name="tutorial-track">
+      <video id="tut1" controls preload="none"><source src="videos/tut1.mp4" type="video/mp4"></video>
+      <video id="tut1_1" controls preload="none"><source src="videos/tut1_1.mp4" type="video/mp4"></video>
+    </div>
 
     <!-- Main Timeline -->
-    <video id="video1" controls preload="none" data-video-next="video2"><source src="videos/video1.mp4" type="video/mp4"></video>
-    <video id="video1_1" controls preload="none" data-video-next="video2"><source src="videos/video1_1.mp4" type="video/mp4"></video>
-    <video id="video2" controls preload="none" data-video-next="video3"><source src="videos/video2.mp4" type="video/mp4"></video>
-    <video id="video2_1" controls preload="none" data-video-next="video3"><source src="videos/video2_1.mp4" type="video/mp4"></video>
-    <video id="video3" controls preload="none" data-video-next="video4"><source src="videos/video3.mp4" type="video/mp4"></video>
-    <video id="video4" controls preload="none" data-video-next="video5"><source src="videos/video4.mp4" type="video/mp4"></video>
-    <video id="video4_1" controls preload="none" data-video-next="video5"><source src="videos/video4_1.mp4" type="video/mp4"></video>
-    <video id="video5" controls preload="none" data-video-next="video6"><source src="videos/video5.mp4" type="video/mp4"></video>
-    <video id="video5_1" controls preload="none" data-video-next="video6"><source src="videos/video5_1.mp4" type="video/mp4"></video>
-    <video id="video6" controls preload="none" data-video-next="video7"><source src="videos/video6.mp4" type="video/mp4"></video>
-    <video id="video6_1" controls preload="none" data-video-next="video7"><source src="videos/video6_1.mp4" type="video/mp4"></video>
-    <video id="video7" controls preload="none" data-video-next="video8"><source src="videos/video7.mp4" type="video/mp4"></video>
-    <video id="video7_1" controls preload="none" data-video-next="video8"><source src="videos/video7_1.mp4" type="video/mp4"></video>
-    <video id="video8" controls preload="none" data-video-next="video9"><source src="videos/video8.mp4" type="video/mp4"></video>
-    <video id="video8_1" controls preload="none" data-video-next="video9"><source src="videos/video8_1.mp4" type="video/mp4"></video>
-    <video id="video9" controls preload="none" data-video-next="encerramento"><source src="videos/video9.mp4" type="video/mp4"></video>
-    <video id="encerramento" controls preload="none"><source src="videos/encerramento.mp4" type="video/mp4"></video>
+    <div data-state-name="main-track">
+      <video id="video1" controls preload="none" data-video-next="video2"><source src="videos/video1.mp4" type="video/mp4"></video>
+      <video id="video1_1" controls preload="none" data-video-next="video2"><source src="videos/video1_1.mp4" type="video/mp4"></video>
+      <video id="video2" controls preload="none" data-video-next="video3"><source src="videos/video2.mp4" type="video/mp4"></video>
+      <video id="video2_1" controls preload="none" data-video-next="video3"><source src="videos/video2_1.mp4" type="video/mp4"></video>
+      <video id="video3" controls preload="none" data-video-next="video4"><source src="videos/video3.mp4" type="video/mp4"></video>
+      <video id="video4" controls preload="none" data-video-next="video5"><source src="videos/video4.mp4" type="video/mp4"></video>
+      <video id="video4_1" controls preload="none" data-video-next="video5"><source src="videos/video4_1.mp4" type="video/mp4"></video>
+      <video id="video5" controls preload="none" data-video-next="video6"><source src="videos/video5.mp4" type="video/mp4"></video>
+      <video id="video5_1" controls preload="none" data-video-next="video6"><source src="videos/video5_1.mp4" type="video/mp4"></video>
+      <video id="video6" controls preload="none" data-video-next="video7"><source src="videos/video6.mp4" type="video/mp4"></video>
+      <video id="video6_1" controls preload="none" data-video-next="video7"><source src="videos/video6_1.mp4" type="video/mp4"></video>
+      <video id="video7" controls preload="none" data-video-next="video8"><source src="videos/video7.mp4" type="video/mp4"></video>
+      <video id="video7_1" controls preload="none" data-video-next="video8"><source src="videos/video7_1.mp4" type="video/mp4"></video>
+      <video id="video8" controls preload="none" data-video-next="video9"><source src="videos/video8.mp4" type="video/mp4"></video>
+      <video id="video8_1" controls preload="none" data-video-next="video9"><source src="videos/video8_1.mp4" type="video/mp4"></video>
+      <video id="video9" controls preload="none" data-video-next="encerramento"><source src="videos/video9.mp4" type="video/mp4"></video>
+      <video id="encerramento" controls preload="none"><source src="videos/encerramento.mp4" type="video/mp4"></video>
+    </div>
 
     <!-- Hooks -->
     <a href="#video1_1" class="hook" data-video-source="video1" data-video-time="2">Geometria<img class="img-hook" src="img/link.svg"></a>
@@ -73,6 +77,7 @@
     <!-- Scripts -->
     <script type="text/javascript" src="js/api.js"></script>
     <script type="text/javascript" src="js/hooks.js"></script>
+    <script type="text/javascript" src="js/ui.js"></script>
     <script type="text/javascript" src="js/menu.js"></script>
     <script type="text/javascript" src="js/countdown.js"></script>
   </body>
