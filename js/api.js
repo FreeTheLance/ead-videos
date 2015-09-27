@@ -53,9 +53,11 @@ function goTo(id, time, start) {
   }
 
   // Go to video.
-  EADVideos.current = EADVideos.videos[id];
-  EADVideos.current.api.currentTime(time);
-  EADVideos.current.$element.trigger('in.ead');
+  target.api.currentTime(time);
+  target.api.load();
+  target.$element.trigger('in.ead');
+
+  EADVideos.current = target;
 
   // Initiate video, if required to do so.
   if (start) EADVideos.current.api.play();
