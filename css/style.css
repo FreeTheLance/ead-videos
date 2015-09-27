@@ -125,7 +125,7 @@ body{
 		border-radius: 0;
 		border: none;
 	}
-	
+
 	#nav-menu-items a:hover{
 		color: #A1DD10;
 		-webkit-transition: all 0.3s;
@@ -171,7 +171,7 @@ video.active {
 	opacity: 1;
 }
 
-.changer {
+.hook {
 	position: fixed;
 	left: 50%;
 	bottom: 7vh;
@@ -185,14 +185,14 @@ video.active {
 	z-index: 1000;
 }
 
-.img-changer {
+.img-hook {
 	width: 38px;
     height: 38px;
     margin-bottom: -6px;
     margin-left: 5px;
 }
 
-.changer.active {
+.hook.active {
 	display: block;
 }
 

@@ -32,20 +32,20 @@ jQuery(function () {
 
   var current = videos['video1'];
 
-  var $changers = $('.changer');
+  var $hooks = $('.hook');
 
-  // Build changers.
-  $changers.each(function () {
-    var $changer = $(this);
-    var sourceId = $changer.data('video-source');
+  // Build hooks.
+  $hooks.each(function () {
+    var $hook = $(this);
+    var sourceId = $hook.data('video-source');
     var source = videos[sourceId].video;
-    var time = $changer.data('video-time');
+    var time = $hook.data('video-time');
 
     source.cue(time, function () {
-      $changer.addClass('active');
+      $hook.addClass('active');
     });
 
-    $changer.on('click', function () {
+    $hook.on('click', function () {
       changeVideo(sourceId);
     });
   });
