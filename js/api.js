@@ -35,30 +35,36 @@ function finish() {
  * Go to a video.
  * @param {string} id ID of the video to go to.
  * @param {time} time Optional time (milliseconds) to start the video.
+ * @param {boolean} start Wheter the video should automatically start playing.
  */
-function goTo(id, time) {
+function goTo(id, time, start, hold) {
   time = time || 0;
+  start = start || false;
+  hold = hold || 1000;
 
   // Pause current video, if available.
   if (EADVideos.current) {
     EADVideos.current.api.pause();
-    EADVideos.current.$element.removeClass('active');
+    EADVideos.current.$element.trigger('out.ead');
   }
 
-  // Go to video.
-  EADVideos.current = EADVideos.videos[id];
-  EADVideos.current.api.currentTime(time);
-  EADVideos.current.api.play();
-  EADVideos.current.$element.addClass('active');
+  setTimeout(function () {
+    // Go to video.
+    EADVideos.current = EADVideos.videos[id];
+    EADVideos.current.api.currentTime(time);
+    EADVideos.current.$element.trigger('in.ead');
+
+    // Initiate video, if required to do so.
+    if (start) EADVideos.current.api.play();
+  }, hold);
 }
 
 
 /*
- * Register listeners.
+ * Run initializers.
  */
 
 $('video').each(initializeVideos);
-$('.hook').each(initializeHooks);
 
 /**
  * Register video to the global api.
@@ -82,26 +88,9 @@ function initializeVideos() {
   // Save data to the API.
   EADVideos.ids.push(id);
   EADVideos.videos[id] = video;
-}
 
-/**
- * Configure hooks.
- */
-function initializeHooks() {
-  var $element = $(this);
-  var sourceId = $element.data('video-source');
-  var time     = $element.data('video-time');
-  var source   = EADVideos.videos[sourceId].api;
-
-  // Listen to video time event.
-  source.cue(time, function () {
-    $element.addClass('active');
-  });
-
-  // Register hook click events.
-  $element.on('click', function () {
-    goTo(sourceId);
-  });
+  // Setup poster.
+  video.api.currentTime(0.1).capture().currentTime(0);
 }
 
 
