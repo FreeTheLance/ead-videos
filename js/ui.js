@@ -29,7 +29,7 @@
    * Active hook state toggler listener.
    */
   function hookStateToggle(e) {
-     $(this).toggleClass('active', e.type == 'in');
+    $(this).toggleClass('active', e.type == 'in');
   }
 
 })();

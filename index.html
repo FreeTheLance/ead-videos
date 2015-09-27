@@ -13,24 +13,24 @@
 
   <body data-state-name="home">
     <div id="thumbnail-container">
-      <a id="tutorial-link" class="thumbnail" href="#">
+      <a id="tutorial-link" class="thumbnail" href="#tut1">
         <br><br>Assista ao Tutorial
       </a>
 
-      <a id="main-link" class="thumbnail" href="#">
+      <a id="main-link" class="thumbnail" href="#video1">
         <div class="hidden">Geometria</div>
       </a>
     </div>
 
     <!-- Tutorials -->
     <div data-state-name="tutorial-track">
-      <video id="tut1" controls preload="none"><source src="videos/tut1.mp4" type="video/mp4"></video>
+      <video id="tut1" controls preload="none" data-manual-start><source src="videos/tut1.mp4" type="video/mp4"></video>
       <video id="tut1_1" controls preload="none"><source src="videos/tut1_1.mp4" type="video/mp4"></video>
     </div>
 
     <!-- Main Timeline -->
     <div data-state-name="main-track">
-      <video id="video1" controls preload="none" data-video-next="video2"><source src="videos/video1.mp4" type="video/mp4"></video>
+      <video id="video1" controls preload="none" data-video-next="video2" data-manual-start><source src="videos/video1.mp4" type="video/mp4"></video>
       <video id="video1_1" controls preload="none" data-video-next="video2"><source src="videos/video1_1.mp4" type="video/mp4"></video>
       <video id="video2" controls preload="none" data-video-next="video3"><source src="videos/video2.mp4" type="video/mp4"></video>
       <video id="video2_1" controls preload="none" data-video-next="video3"><source src="videos/video2_1.mp4" type="video/mp4"></video>

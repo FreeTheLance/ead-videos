@@ -38,8 +38,13 @@ function finish() {
  * @param {boolean} start Wheter the video should automatically start playing.
  */
 function goTo(id, time, start) {
+  var target = EADVideos.videos[id];
+
+  // Early return on no video found. @todo: should create an error.
+  if (!target) return;
+
   time = time || 0;
-  start = typeof start === 'undefined' ? true : start;
+  start = typeof start === 'undefined' ? !target.$element.filter('[data-manual-start]').length : start;
 
   // Pause current video, if available.
   if (EADVideos.current) {
