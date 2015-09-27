@@ -90,7 +90,7 @@ function initializeVideos() {
   EADVideos.videos[id] = video;
 
   // Setup poster.
-  video.api.currentTime(0.1).capture().currentTime(0);
+  // video.api.currentTime(0.1).capture().currentTime(0);
 }
 
 
