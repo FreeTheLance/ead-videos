@@ -1,32 +1,104 @@
-var element = document.getElementById('countdown-container');
+/**
+ * Countdown handler.
+ */
 
-var countdown = new ProgressBar.Circle(element, {
+;(function () {
+
+  var $hooks     = $('.hook');
+  var $countdown = $('#countdown-container');
+  var element    = $countdown.get(0);
+  var countdown  = null;
+  var interval   = null;
+  var defaults   = {
     duration: 1000,
     color: "#A1DD10",
     trailColor: "#fff",
     strokeWidth: 10,
     trailWidth: 3
-});
+  };
 
-countdown.set(1);
+  var source, start, end, currentTime, fulfilled, duration, walked;
 
-var duration = 4;
+  /*
+  * Register listeners.
+  */
 
-countdown.setText(duration);
+  $hooks.on('in.ead', hookIn);
+  $hooks.on('out.ead', hookOut);
 
-var count = 0;
+  /**
+   * Listener for hook in events.
+   */
+  function hookIn() {
+    // Destroy previous, if any.
+    if (countdown || interval) destroy();
 
-var interval = setInterval(function () {
-	count = count + 1;
+    var $hook = $(this);
 
-	if (count == duration + 1) {
-		clearInterval(interval);
-		$(element).fadeOut();
+    source = EADVideos.videos[$hook.data('video-source')].api;
+    start  = $hook.data('hook-start');
+    end    = $hook.data('hook-end') || start + 10;
+    duration = end - start;
 
-		return;
-	}
+    // Initiate countdown.
+    countdown = new ProgressBar.Circle(element, defaults);
+    $countdown.fadeIn(500);
 
-	countdown.setText(duration - count);
+    // Start listening.
+    source.on('timeupdate', updateCountdown);
 
-    countdown.animate(1 - count / duration);
-}, 1000);
+    // First step.
+    updateCountdown(false);
+  }
+
+  /**
+   * Listener for hook out events.
+   */
+  function hookOut() {
+    destroy(true);
+  }
+
+  /**
+   * Destroy current countdown.
+   */
+  function destroy(animate) {
+
+    // Make sure we stop timer.
+    if (interval) clearInterval(interval);
+    interval = null;
+
+    // Disable listeners.
+    if (source) source.off('timeupdate', updateCountdown);
+    source = null;
+
+    // @todo: Ugly!
+    if (animate) {
+      $countdown.fadeOut(500, function () {
+        countdown.destroy();
+        countdown = null;
+      });
+    } else {
+      countdown.destroy();
+      countdown = null;
+    }
+  }
+
+  /**
+   * Update countdown.
+   */
+  function updateCountdown(animate) {
+    // @todo: should check start/end too.
+    if (!source) return;
+
+    animate = typeof animate == 'undefined' ? true : animate;
+    currentTime = source.currentTime();
+    walked = currentTime - start;
+    fulfilled = (duration - walked) / duration;
+
+    // Initiate state.
+    countdown.setText(Math.floor(duration - walked));
+    if (animate) countdown.animate(fulfilled);
+    else countdown.set(fulfilled);
+  }
+
+})();

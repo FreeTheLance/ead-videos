@@ -200,11 +200,19 @@ video.active {
 	z-index: 1000;
 }
 
-.img-hook {
+.hook:after {
+	content: "";
+	display: inline-block;
 	width: 38px;
-    height: 38px;
-    margin-bottom: -6px;
-    margin-left: 5px;
+  height: 38px;
+  margin-bottom: -8px;
+  margin-left: 5px;
+	background-image: url("../img/link.svg");
+	background-size: 100%;
+}
+
+.hook.spelling:after {
+	background-image: url("../img/soletracao.svg")
 }
 
 .hook.active {
