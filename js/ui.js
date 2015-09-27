@@ -4,13 +4,15 @@
 
 var $body = $('body');
 var $videos = $('video');
+var $hooks = $('.hook');
 
-$videos.on('in.ead out.ead', stateToggle);
+$videos.on('in.ead out.ead', videoStateToggle);
+$hooks.on('in.ead out.ead', hookStateToggle);
 
 /**
- * Active state toggler listener.
+ * Active video state toggler listener.
  */
-function stateToggle(e) {
+function videoStateToggle(e) {
   var $video = $(this);
   var $state = $video.closest('[data-state-name]');
   var state = $state.data('state-name');
@@ -20,4 +22,11 @@ function stateToggle(e) {
 
   // Toggle element class state.
   $video.toggleClass('active', e.type == 'in');
+}
+
+/**
+ * Active hook state toggler listener.
+ */
+function hookStateToggle(e) {
+   $(this).toggleClass('active', e.type == 'in');
 }

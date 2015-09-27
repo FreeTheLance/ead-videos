@@ -37,10 +37,9 @@ function finish() {
  * @param {time} time Optional time (milliseconds) to start the video.
  * @param {boolean} start Wheter the video should automatically start playing.
  */
-function goTo(id, time, start, hold) {
+function goTo(id, time, start) {
   time = time || 0;
-  start = start || false;
-  hold = hold || 1000;
+  start = typeof start === 'undefined' ? true : start;
 
   // Pause current video, if available.
   if (EADVideos.current) {
@@ -48,15 +47,13 @@ function goTo(id, time, start, hold) {
     EADVideos.current.$element.trigger('out.ead');
   }
 
-  setTimeout(function () {
-    // Go to video.
-    EADVideos.current = EADVideos.videos[id];
-    EADVideos.current.api.currentTime(time);
-    EADVideos.current.$element.trigger('in.ead');
+  // Go to video.
+  EADVideos.current = EADVideos.videos[id];
+  EADVideos.current.api.currentTime(time);
+  EADVideos.current.$element.trigger('in.ead');
 
-    // Initiate video, if required to do so.
-    if (start) EADVideos.current.api.play();
-  }, hold);
+  // Initiate video, if required to do so.
+  if (start) EADVideos.current.api.play();
 }
 
 
@@ -92,40 +89,3 @@ function initializeVideos() {
   // Setup poster.
   // video.api.currentTime(0.1).capture().currentTime(0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-jQuery(function () {
-
-  // Hide thumbnails
-
-  var $thumbnailContainer = $('#thumbnail-container');
-  var $tutorialLink = $('#tutorial-link');
-  var $mainLink = $('#main-link');
-
-  $tutorialLink.on('click', function () {
-    $thumbnailContainer.fadeOut(400);
-
-    goTo('tut1')
-
-  });
-
-  $mainLink.on('click', function () {
-    $thumbnailContainer.fadeOut(400);
-
-    goTo('video1')
-
-  });
-
-});
