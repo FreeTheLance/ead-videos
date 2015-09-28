@@ -11,7 +11,8 @@ window.EADVideos = jQuery.extend(true, window.EADVideos || {}, {
   current: null,
   destination: null,
   goTo: goTo,
-  finish: finish
+  finish: finish,
+  parseHash: parseHash
 });
 
 /*
@@ -66,16 +67,26 @@ function goTo(id, time, start) {
   }
 
   // Go to video.
-  target.api.currentTime(time);
   target.api.load();
+  target.api.currentTime(time);
   target.$element.trigger('in.ead');
-
-  console.log(target);
 
   EADVideos.current = target;
 
   // Initiate video, if required to do so.
   if (start) EADVideos.current.api.play();
+}
+
+/**
+ * Parse a hash string to find a video id and time.
+ */
+function parseHash(hash) {
+  var parsed = (hash || '').match(/([a-z][a-z0-9_-]+)(?:&([0-9]+))?/i);
+
+  return parsed && parsed[1] ? {
+    id: parsed[1],
+    time: parsed[2] || 0
+  } : null;
 }
 
 
@@ -101,7 +112,12 @@ function initializeVideos() {
   // Listen for video ending event. Bind a goto if next is available. Otherwise,
   // just bind a finish program command.
   video.api.on('ended', function () {
-    EADVideos[video.next ? 'goTo' : 'finish'](video.next, 0);
+    if (video.next) {
+      var targetInfo = EADVideos.parseHash(video.next);
+      EADVideos.goTo(targetInfo.id, targetInfo.time, true);
+    } else {
+      EADVideos.finish();
+    }
   });
 
   // Save data to the API.

@@ -17,14 +17,14 @@
    * Configure hooks.
    */
   function initializeHooks() {
-    var $element  = $(this);
-    var sourceId  = $element.data('video-source');
-    var source    = EADVideos.videos[sourceId];
-    var targetId  = (this.hash || '').substr(1);
-    var target    = EADVideos.videos[targetId].api;
-    var start     = parseInt($element.data('hook-start'));
-    var end       = parseInt($element.data('hook-end'));
-    var visible   = false;
+    var $element   = $(this);
+    var sourceId   = $element.data('video-source');
+    var source     = EADVideos.videos[sourceId];
+    var targetInfo = EADVideos.parseHash(this.hash);
+    var target     = EADVideos.videos[targetInfo.id].api;
+    var start      = parseInt($element.data('hook-start'));
+    var end        = parseInt($element.data('hook-end'));
+    var visible    = false;
 
     // Early return in case n source/target is found.
     if (!source || !target) return;
@@ -93,8 +93,10 @@
    * Change current video.
    */
   function hashChange() {
-    if ((id = (location.hash || '').substr(1)) && EADVideos.ids.indexOf(id) > -1) {
-      EADVideos.goTo(id);
+    var targetInfo = EADVideos.parseHash(location.hash);
+
+    if (targetInfo && EADVideos.ids.indexOf(targetInfo.id) > -1) {
+      EADVideos.goTo(targetInfo.id, targetInfo.time / 1000);
     } else {
       EADVideos.finish();
     }
