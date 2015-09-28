@@ -33,6 +33,7 @@ function finish() {
   if (EADVideos.current) {
     EADVideos.current.api.pause();
     EADVideos.current.$element.trigger('out.ead');
+    EADVideos.current = null;
   }
 
   // Update hash, if not done yet.
