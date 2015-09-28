@@ -208,6 +208,7 @@ video.active {
 	color: white;
 	text-decoration: none;
 	z-index: 1000;
+	white-space: nowrap;
 }
 
 .hook:after {
