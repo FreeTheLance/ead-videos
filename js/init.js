@@ -4,6 +4,7 @@
 
 (function () {
 
+  var $body = $('body');
   var video;
 
   // Empty hash for Gods sake!
@@ -16,10 +17,21 @@
   });
 
   $('video').on('click', toggleCurrentVideoState);
+  $('video').on('pause play out.ead', videoStateChange);
 
   function toggleCurrentVideoState() {
     if (video = EADVideos.current && EADVideos.current.api) {
       video[video.paused() ? 'play' : 'pause']();
     }
+  }
+
+  function videoStateChange(e) {
+    // Cleanup.
+    $body
+      .removeClass('playing')
+      .removeClass('paused');
+
+    if (e.type == 'pause') $body.addClass('paused');
+    if (e.type == 'play') $body.addClass('playing');
   }
 })();
