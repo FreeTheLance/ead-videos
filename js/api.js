@@ -12,7 +12,9 @@ window.EADVideos = jQuery.extend(true, window.EADVideos || {}, {
   destination: null,
   goTo: goTo,
   finish: finish,
-  parseHash: parseHash
+  parseHash: parseHash,
+  forceStart: false,
+  checkPredefinedDestination: checkPredefinedDestination
 });
 
 /*
@@ -23,12 +25,9 @@ window.EADVideos = jQuery.extend(true, window.EADVideos || {}, {
  * Go to a previously defined destination, or finish the application.
  */
 function finish() {
-  // Go to currently defined destination, when available.
-  if (this.destination) {
-    goTo(this.destination.id, this.destination.time);
-    this.destination = null;
-    return;
-  }
+
+  // Go to predefined destination, when available.
+  if (EADVideos.checkPredefinedDestination()) return;
 
   // Pause current video, if available.
   if (EADVideos.current) {
@@ -73,15 +72,35 @@ function goTo(id, time, start) {
 
   EADVideos.current = target;
 
+  if (EADVideos.forceStart) {
+    EADVideos.forceStart = false;
+    start = true;
+  }
+
   // Initiate video, if required to do so.
   if (start) EADVideos.current.api.play();
+}
+
+/**
+ * Go to the predefined destination, when available.
+ */
+function checkPredefinedDestination() {
+  if (this.destination) {
+    EADVideos.forceStart = true;
+
+    location.hash = this.destination.id + '&' + ((this.destination.time || 0) * 1000);
+    this.destination = null;
+    return true;
+  }
+
+  return false;
 }
 
 /**
  * Parse a hash string to find a video id and time.
  */
 function parseHash(hash) {
-  var parsed = (hash || '').match(/([a-z][a-z0-9_-]+)(?:&([0-9]+))?/i);
+  var parsed = (hash || '').match(/([a-z][a-z0-9_-]+)(?:&([0-9.]+))?/i);
 
   return parsed && parsed[1] ? {
     id: parsed[1],
@@ -112,6 +131,10 @@ function initializeVideos() {
   // Listen for video ending event. Bind a goto if next is available. Otherwise,
   // just bind a finish program command.
   video.api.on('ended', function () {
+
+    // Handle interruption of default timeline.
+    if (EADVideos.checkPredefinedDestination()) return;
+
     if (video.next) {
       var targetInfo = EADVideos.parseHash(video.next);
       EADVideos.goTo(targetInfo.id, targetInfo.time, true);
