@@ -16,7 +16,6 @@
   "dependencies": {
     "bootstrap": "~3.3.5",
     "popcorn-js": "http://cdn.popcornjs.org/code/dist/popcorn-complete.min.js",
-    "popcorn.capture": "https://github.com/rwaldron/popcorn.capture.git",
     "progressbar.js": "~0.9.0"
   }
 }
