@@ -19,7 +19,7 @@
     var state = $state.data('state-name');
 
     // Set body state.
-    if (state) $body.attr('data-state-name', state);
+    if (state) $body.attr('data-state-name', e.type == 'in' ? state : '');
 
     // Toggle element class state.
     $video.toggleClass('active', e.type == 'in');

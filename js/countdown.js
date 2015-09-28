@@ -17,7 +17,7 @@
     trailWidth: 3
   };
 
-  var source, start, end, currentTime, fulfilled, duration, walked;
+  var source, start, end, currentTime, fulfilled, duration, walked, $hook;
 
   /*
   * Register listeners.
@@ -25,6 +25,7 @@
 
   $hooks.on('in.ead', hookIn);
   $hooks.on('out.ead', hookOut);
+  $(window).on('hashchange', hashChange);
 
   /**
    * Listener for hook in events.
@@ -33,7 +34,7 @@
     // Destroy previous, if any.
     if (countdown || interval) destroy();
 
-    var $hook = $(this);
+    $hook = $(this);
 
     source = EADVideos.videos[$hook.data('video-source')].api;
     start  = $hook.data('hook-start');
@@ -59,26 +60,34 @@
   }
 
   /**
+   * Listen to hash changing events.
+   */
+  function hashChange() {
+    if ($hook) $hook.trigger('out.ead');
+  }
+
+  /**
    * Destroy current countdown.
    */
   function destroy(animate) {
 
     // Make sure we stop timer.
     if (interval) clearInterval(interval);
-    interval = null;
 
     // Disable listeners.
     if (source) source.off('timeupdate', updateCountdown);
-    source = null;
+
+    // Reset variables.
+    interval = source = $hook = null;
 
     // @todo: Ugly!
     if (animate) {
       $countdown.fadeOut(500, function () {
-        countdown.destroy();
+        countdown && countdown.destroy();
         countdown = null;
       });
     } else {
-      countdown.destroy();
+      countdown && countdown.destroy();
       countdown = null;
     }
   }
@@ -88,7 +97,7 @@
    */
   function updateCountdown(animate) {
     // @todo: should check start/end too.
-    if (!source) return;
+    if (!source || !countdown) return destroy();
 
     animate = typeof animate == 'undefined' ? true : animate;
     currentTime = source.currentTime();

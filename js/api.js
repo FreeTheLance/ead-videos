@@ -2,6 +2,8 @@
  * Initialize data and api.
  */
 
+var $body = $('body');
+
 // Initiate globals.
 window.EADVideos = jQuery.extend(true, window.EADVideos || {}, {
   ids: [],
@@ -27,6 +29,17 @@ function finish() {
     return;
   }
 
+  // Pause current video, if available.
+  if (EADVideos.current) {
+    EADVideos.current.api.pause();
+    EADVideos.current.$element.trigger('out.ead');
+  }
+
+  // Update hash, if not done yet.
+  location.hash = '';
+
+  // @todo: any other finishing state?
+  $body.attr('data-state-name', 'home');
   // Finish program.
   // go home?
 }
@@ -56,6 +69,8 @@ function goTo(id, time, start) {
   target.api.currentTime(time);
   target.api.load();
   target.$element.trigger('in.ead');
+
+  console.log(target);
 
   EADVideos.current = target;
 
