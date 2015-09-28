@@ -22,59 +22,62 @@
       </a>
     </div>
 
-    <!-- Tutorials -->
-    <div data-state-name="tutorial-track">
-      <video id="tut1" controls preload="auto" data-manual-start><source src="videos/tut1.mp4" type="video/mp4"></video>
-      <video id="tut1_1" controls preload="none" data-video-next="tut1&77"><source src="videos/tut1_1.mp4" type="video/mp4"></video>
-    </div>
+    <div id="video-wrapper">
 
-    <!-- Main Timeline -->
-    <div data-state-name="main-track">
-      <video id="video1" controls preload="auto" data-video-next="video2" data-manual-start><source src="videos/video1.mp4" type="video/mp4"></video>
-      <video id="video1_1" controls preload="none" data-video-next="video2"><source src="videos/video1_1.mp4" type="video/mp4"></video>
-      <video id="video2" controls preload="none" data-video-next="video3"><source src="videos/video2.mp4" type="video/mp4"></video>
-      <video id="video2_1" controls preload="none" data-video-next="video3"><source src="videos/video2_1.mp4" type="video/mp4"></video>
-      <video id="video3" controls preload="none" data-video-next="video4"><source src="videos/video3.mp4" type="video/mp4"></video>
-      <video id="video4" controls preload="none" data-video-next="video5"><source src="videos/video4.mp4" type="video/mp4"></video>
-      <video id="video4_1" controls preload="none" data-video-next="video5"><source src="videos/video4_1.mp4" type="video/mp4"></video>
-      <video id="video5" controls preload="none" data-video-next="video6"><source src="videos/video5.mp4" type="video/mp4"></video>
-      <video id="video5_1" controls preload="none" data-video-next="video6"><source src="videos/video5_1.mp4" type="video/mp4"></video>
-      <video id="video6" controls preload="none" data-video-next="video7"><source src="videos/video6.mp4" type="video/mp4"></video>
-      <video id="video6_1" controls preload="none" data-video-next="video7"><source src="videos/video6_1.mp4" type="video/mp4"></video>
-      <video id="video7" controls preload="none" data-video-next="video8"><source src="videos/video7.mp4" type="video/mp4"></video>
-      <video id="video7_1" controls preload="none" data-video-next="video8"><source src="videos/video7_1.mp4" type="video/mp4"></video>
-      <video id="video8" controls preload="none" data-video-next="video9"><source src="videos/video8.mp4" type="video/mp4"></video>
-      <video id="video8_1" controls preload="none" data-video-next="video9"><source src="videos/video8_1.mp4" type="video/mp4"></video>
-      <video id="video9" controls preload="none" data-video-next="encerramento"><source src="videos/video9.mp4" type="video/mp4"></video>
-      <video id="encerramento" controls preload="none"><source src="videos/encerramento.mp4" type="video/mp4"></video>
-    </div>
-
-    <!-- Hooks -->
-    <a href="#tut1_1" data-video-source="tut1" data-hook-start="66" class="hook spelling">Geometria</a>
-    <a href="#tut1" data-video-source="tut1" data-hook-start="148" class="hook">Rever tutorial</a>
-    <a href="#video1_1" data-video-source="video1" data-hook-start="3.2" class="hook spelling">Geometria</a>
-    <a href="#video2_1" data-video-source="video2" data-hook-start="67" class="hook spelling">Projeção Cilíndrica Ortogonal</a>
-    <a href="#video9" data-video-source="video3" data-hook-start="8.1" class="hook">Projeção Cilíndrica Ortogonal</a>
-    <a href="#video4_1" data-video-source="video4" data-hook-start="4.2" class="hook spelling">Triedro</a>
-    <a href="#video5_1" data-video-source="video5" data-hook-start="5.2" class="hook spelling">Plano</a>
-    <a href="#video6_1" data-video-source="video6" data-hook-start="4.1" class="hook">Plano</a>
-    <a href="#video7_1" data-video-source="video7" data-hook-start="20.06" class="hook spelling">Ângulo de 90˚</a>
-    <a href="#video8_1" data-video-source="video8" data-hook-start="1" class="hook">Ângulo de 90˚</a>
-    <a href="#encerramento" data-video-source="video9" data-hook-start="0.5" class="hook">Pular vídeo</a>
-
-    <div id="nav-menu">
-      <div id="nav-menu-items">
-        <ul>
-          <li><a href="#video9">Projeção Cilíndrica Ortogonal</a></li>
-          <li><a href="#video6_1">Plano</a></li>
-          <li><a href="#video8_1">Ângulo de 90˚</a></li>
-          <li><a href="#home">Voltar para a entrada</a></li>
-        </ul>
+      <!-- Tutorials -->
+      <div data-state-name="tutorial-track">
+        <video id="tut1" controls preload="auto" data-manual-start><source src="videos/tut1.mp4" type="video/mp4"></video>
+        <video id="tut1_1" controls preload="none" data-video-next="tut1&77"><source src="videos/tut1_1.mp4" type="video/mp4"></video>
       </div>
-      <a id="nav-menu-button" href="#">+</a>
-    </div>
 
-    <div id="countdown-container"></div>
+      <!-- Main Timeline -->
+      <div data-state-name="main-track">
+        <video id="video1" controls preload="auto" data-video-next="video2" data-manual-start><source src="videos/video1.mp4" type="video/mp4"></video>
+        <video id="video1_1" controls preload="none" data-video-next="video2"><source src="videos/video1_1.mp4" type="video/mp4"></video>
+        <video id="video2" controls preload="none" data-video-next="video3"><source src="videos/video2.mp4" type="video/mp4"></video>
+        <video id="video2_1" controls preload="none" data-video-next="video3"><source src="videos/video2_1.mp4" type="video/mp4"></video>
+        <video id="video3" controls preload="none" data-video-next="video4"><source src="videos/video3.mp4" type="video/mp4"></video>
+        <video id="video4" controls preload="none" data-video-next="video5"><source src="videos/video4.mp4" type="video/mp4"></video>
+        <video id="video4_1" controls preload="none" data-video-next="video5"><source src="videos/video4_1.mp4" type="video/mp4"></video>
+        <video id="video5" controls preload="none" data-video-next="video6"><source src="videos/video5.mp4" type="video/mp4"></video>
+        <video id="video5_1" controls preload="none" data-video-next="video6"><source src="videos/video5_1.mp4" type="video/mp4"></video>
+        <video id="video6" controls preload="none" data-video-next="video7"><source src="videos/video6.mp4" type="video/mp4"></video>
+        <video id="video6_1" controls preload="none" data-video-next="video7"><source src="videos/video6_1.mp4" type="video/mp4"></video>
+        <video id="video7" controls preload="none" data-video-next="video8"><source src="videos/video7.mp4" type="video/mp4"></video>
+        <video id="video7_1" controls preload="none" data-video-next="video8"><source src="videos/video7_1.mp4" type="video/mp4"></video>
+        <video id="video8" controls preload="none" data-video-next="video9"><source src="videos/video8.mp4" type="video/mp4"></video>
+        <video id="video8_1" controls preload="none" data-video-next="video9"><source src="videos/video8_1.mp4" type="video/mp4"></video>
+        <video id="video9" controls preload="none" data-video-next="encerramento"><source src="videos/video9.mp4" type="video/mp4"></video>
+        <video id="encerramento" controls preload="none"><source src="videos/encerramento.mp4" type="video/mp4"></video>
+      </div>
+
+      <!-- Hooks -->
+      <a href="#tut1_1" data-video-source="tut1" data-hook-start="66" class="hook spelling">Geometria</a>
+      <a href="#tut1" data-video-source="tut1" data-hook-start="148" class="hook">Rever tutorial</a>
+      <a href="#video1_1" data-video-source="video1" data-hook-start="3.2" class="hook spelling">Geometria</a>
+      <a href="#video2_1" data-video-source="video2" data-hook-start="67" class="hook spelling">Projeção Cilíndrica Ortogonal</a>
+      <a href="#video9" data-video-source="video3" data-hook-start="8.1" class="hook">Projeção Cilíndrica Ortogonal</a>
+      <a href="#video4_1" data-video-source="video4" data-hook-start="4.2" class="hook spelling">Triedro</a>
+      <a href="#video5_1" data-video-source="video5" data-hook-start="5.2" class="hook spelling">Plano</a>
+      <a href="#video6_1" data-video-source="video6" data-hook-start="4.1" class="hook">Plano</a>
+      <a href="#video7_1" data-video-source="video7" data-hook-start="20.06" class="hook spelling">Ângulo de 90˚</a>
+      <a href="#video8_1" data-video-source="video8" data-hook-start="1" class="hook">Ângulo de 90˚</a>
+      <a href="#encerramento" data-video-source="video9" data-hook-start="0.5" class="hook">Pular vídeo</a>
+
+      <div id="countdown-container"></div>
+
+      <div id="nav-menu">
+        <div id="nav-menu-items">
+          <ul>
+            <li><a href="#video9">Projeção Cilíndrica Ortogonal</a></li>
+            <li><a href="#video6_1">Plano</a></li>
+            <li><a href="#video8_1">Ângulo de 90˚</a></li>
+            <li><a href="#home">Voltar para a entrada</a></li>
+          </ul>
+        </div>
+        <a id="nav-menu-button" href="#">+</a>
+      </div>
+    </div>
 
     <!-- Library scripts -->
     <script type="text/javascript" src="lib/jquery/dist/jquery.js"></script>
