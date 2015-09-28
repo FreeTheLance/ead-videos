@@ -2,7 +2,7 @@
 jQuery(function () {
 
 	var $navMenu = $('#nav-menu');
-	var $anchors = $navMenu.find('a');
+	var $anchors = $navMenu.find('#nav-menu-items a:not([href="#home"])');
 	var $navMenuButton = $('#nav-menu-button');
 
 	$navMenu.on('focusout', closeMenu);

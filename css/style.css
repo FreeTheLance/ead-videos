@@ -103,7 +103,8 @@ body[data-state-name="home"] #thumbnail-container {
 	z-index: 1000;
 }
 
-body[data-state-name="main-track"] #nav-menu {
+body[data-state-name="main-track"] #nav-menu,
+body[data-state-name="tutorial-track"] #nav-menu {
 	display: block;
 }
 
