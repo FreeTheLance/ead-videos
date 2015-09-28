@@ -228,3 +228,7 @@ video.active {
 	z-index: 3000;
 	font-family: roboto, sans-serif;
 }
+
+video.active {
+	cursor: pointer;
+}
