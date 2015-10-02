@@ -35,7 +35,8 @@ body{
 	left: 50%;
 	top: 50%;
 	-webkit-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	    transform: translate(-50%, -50%);
 }
 
 body[data-state-name="home"] #thumbnail-container {
@@ -72,7 +73,8 @@ body[data-state-name="home"] #thumbnail-container {
 	display: block;
 	margin-top: 50%;
 	-webkit-transform: translate(0,-50%);
-	transform: translate(0,-50%);
+	-ms-transform: translate(0,-50%);
+	    transform: translate(0,-50%);
 }
 
 .thumbnail {
@@ -85,7 +87,8 @@ body[data-state-name="home"] #thumbnail-container {
 	font-size: 1.6em;
 	color: #fff;
 	text-decoration: none;
-	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	        transition: all 0.3s;
 }
 .thumbnail:hover, .thumbnail:focus {
 	color: #222;
@@ -113,6 +116,10 @@ body[data-state-name="tutorial-track"] #nav-menu {
 	display: block;
 }
 
+body[data-state-name="tutorial-track"] /*#nav-menu li */.tutorial-hide {
+	display: none !important;
+}
+
 	#nav-menu ul {
 		padding: 0;
 		list-style: none;
@@ -120,13 +127,10 @@ body[data-state-name="tutorial-track"] #nav-menu {
 
 	#nav-menu li {
 		opacity: 0;
-		transition: all 500ms;
+		-webkit-transition: all 500ms;
+		        transition: all 500ms;
 		margin-bottom: 10px;
 		line-height: 0em;
-	}
-
-	#nav-menu li:hover {
-		opacity: 1;
 	}
 
 	#nav-menu.active li {
@@ -165,7 +169,8 @@ body[data-state-name="tutorial-track"] #nav-menu {
 	text-decoration: none;
 	color: #fff;
 	cursor: pointer;
-	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	        transition: all 0.3s;
 }
 
 #nav-menu-button:hover {
@@ -174,11 +179,13 @@ body[data-state-name="tutorial-track"] #nav-menu {
 #nav-menu.active #nav-menu-button{
 	color: #A1DD10;
 	-webkit-transform: rotate(45deg);
-	transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	    transform: rotate(45deg);
 }
 
 video {
-	transition: all 500ms;
+	-webkit-transition: all 500ms;
+	        transition: all 500ms;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -191,7 +198,8 @@ video {
 }
 
 video.active {
-	transition: all 500ms 500ms;
+	-webkit-transition: all 500ms 500ms;
+	        transition: all 500ms 500ms;
 	z-index: 100;
 	opacity: 1;
 }
@@ -201,7 +209,8 @@ video.active {
 	left: 50%;
 	bottom: 7vh;
 	-webkit-transform: translate(-50%, 0);
-	transform: translate(-50%, 0);
+	-ms-transform: translate(-50%, 0);
+	    transform: translate(-50%, 0);
 	display: none;
 	font-family: roboto, sans-serif;
 	font-size: 2em;
@@ -234,7 +243,7 @@ video.active {
 	position: absolute !important;
 	width: 70px;
 	right: 15px;
-	bottom: 15px;
+	bottom: 40px;
 	z-index: 3000;
 	font-family: roboto, sans-serif;
 }
@@ -243,13 +252,12 @@ video.active {
 	position: fixed;
 	max-width: 100%;
 	max-height: 100%;
-	/* padding-top: 75%; */
-	/* height: 10px; */
 	height: 100vh;
 	width: calc(100vh * 4/3);
 	padding: 0;
 	left: 50%;
-	transform: translate3d(-50%, 0, 0);
+	-webkit-transform: translate3d(-50%, 0, 0);
+	        transform: translate3d(-50%, 0, 0);
 	top: 0;
 	bottom: 0;
 }
