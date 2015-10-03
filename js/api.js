@@ -59,11 +59,19 @@ function finish(gohome) {
  * @param {time} time Optional time (milliseconds) to start the video.
  * @param {boolean} start Wheter the video should automatically start playing.
  */
-function goTo(id, time, start) {
+function goTo(id, time, start, animate) {
+  animate = typeof animate == 'undefined' ? true : animate;
+
   var target = EADVideos.videos[id];
 
   // Early return on no video found. @todo: should create an error.
   if (!target) return;
+
+  // Preload next video, if any.
+  if (target.next) {
+    var nextInfo = EADVideos.parseHash(target.next);
+    EADVideos.videos[nextInfo.id] && EADVideos.videos[nextInfo.id].api.preload('auto');
+  }
 
   time = time || 0;
   start = typeof start === 'undefined' ? !target.$element.filter('[data-manual-start]').length : start;
@@ -71,13 +79,13 @@ function goTo(id, time, start) {
   // Pause current video, if available.
   if (EADVideos.current) {
     EADVideos.current.api.pause();
-    EADVideos.current.$element.trigger('out.ead');
+    EADVideos.current.$element.trigger('out.ead', animate);
   }
 
   // Go to video.
   target.api.load();
   target.api.currentTime(time);
-  target.$element.trigger('in.ead');
+  target.$element.trigger('in.ead', animate);
 
   EADVideos.current = target;
 

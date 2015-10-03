@@ -13,7 +13,7 @@
   /**
    * Active video state toggler listener.
    */
-  function videoStateToggle(e) {
+  function videoStateToggle(e, animate) {
     var $video = $(this);
     var $state = $video.closest('[data-state-name]');
     var state = $state.data('state-name');
@@ -22,6 +22,7 @@
     if (state) $body.attr('data-state-name', e.type == 'in' ? state : '');
 
     // Toggle element class state.
+    $video.toggleClass('no-animate', animate == false);
     $video.toggleClass('active', e.type == 'in');
   }
 

@@ -206,6 +206,11 @@ video.active {
 	opacity: 1;
 }
 
+video.no-animate {
+	-webkit-transition: none;
+	        transition: none;
+}
+
 .hook {
 	position: fixed;
 	left: 50%;
