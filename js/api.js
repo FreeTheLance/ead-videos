@@ -24,7 +24,8 @@ window.EADVideos = jQuery.extend(true, window.EADVideos || {}, {
 /**
  * Go to a previously defined destination, or finish the application.
  */
-function finish() {
+function finish(gohome) {
+  gohome = typeof gohome == 'undefined' ? true : gohome;
 
   // Go to predefined destination, when available.
   if (EADVideos.checkPredefinedDestination()) return;
@@ -32,17 +33,24 @@ function finish() {
   // Pause current video, if available.
   if (EADVideos.current) {
     EADVideos.current.api.pause();
-    EADVideos.current.$element.trigger('out.ead');
-    EADVideos.current = null;
+
+    if (gohome) {
+      EADVideos.current.$element.trigger('out.ead');
+      EADVideos.current = null;
+    }
   }
 
-  // Update hash, if not done yet.
-  location.hash = '';
+  if (gohome) {
+    // Update hash, if not done yet.
+    location.hash = '';
 
-  // @todo: any other finishing state?
-  $body.attr('data-state-name', 'home');
-  // Finish program.
-  // go home?
+    // @todo: any other finishing state?
+    $body.attr('data-state-name', 'home').removeClass('finished');
+    // Finish program.
+    // go home?
+  } else {
+    $body.addClass('finished');
+  }
 }
 
 /**
@@ -80,6 +88,8 @@ function goTo(id, time, start) {
 
   // Initiate video, if required to do so.
   if (start) EADVideos.current.api.play();
+
+  $body.removeClass('finished');
 }
 
 /**
@@ -138,9 +148,9 @@ function initializeVideos() {
 
     if (video.next) {
       var targetInfo = EADVideos.parseHash(video.next);
-      EADVideos.goTo(targetInfo.id, targetInfo.time, true);
+      EADVideos.goTo(targetInfo.id, targetInfo.time, true, false);
     } else {
-      EADVideos.finish();
+      EADVideos.finish(false);
     }
   });
 

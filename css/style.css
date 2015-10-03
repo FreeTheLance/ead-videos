@@ -133,7 +133,8 @@ body[data-state-name="tutorial-track"] /*#nav-menu li */.tutorial-hide {
 		line-height: 0em;
 	}
 
-	#nav-menu.active li {
+	#nav-menu.active li,
+	body.finished #nav-menu li {
 		opacity: 1;
 		line-height: 1em;
 	}
@@ -176,7 +177,8 @@ body[data-state-name="tutorial-track"] /*#nav-menu li */.tutorial-hide {
 #nav-menu-button:hover {
 	color: #A1DD10;
 }
-#nav-menu.active #nav-menu-button{
+#nav-menu.active #nav-menu-button,
+body.finished #nav-menu #nav-menu-button {
 	color: #A1DD10;
 	-webkit-transform: rotate(45deg);
 	-ms-transform: rotate(45deg);
