@@ -107,7 +107,7 @@ function checkPredefinedDestination() {
   if (this.destination) {
     EADVideos.forceStart = true;
 
-    location.hash = this.destination.id + '&' + ((this.destination.time || 0) * 1000);
+    location.hash = this.destination.id + '&' + (this.destination.time || 0);
     this.destination = null;
     return true;
   }

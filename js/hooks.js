@@ -96,7 +96,7 @@
     var targetInfo = EADVideos.parseHash(location.hash);
 
     if (targetInfo && EADVideos.ids.indexOf(targetInfo.id) > -1) {
-      EADVideos.goTo(targetInfo.id, targetInfo.time / 1000);
+      EADVideos.goTo(targetInfo.id, targetInfo.time);
     } else {
       EADVideos.finish();
     }
