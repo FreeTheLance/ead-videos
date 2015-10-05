@@ -9,9 +9,6 @@ body{
 	outline:none;
 }
 
-.hidden{
-	display: none;
-}
 
 #main {
 	padding: 0;
@@ -70,8 +67,7 @@ body[data-state-name="home"] #thumbnail-container {
 	color: #fff;
 }
 
-#main-link:hover .hidden {
-	display: block;
+.main-link-title, .tutorial-title {
 	margin-top: 50%;
 	-webkit-transform: translate(0,-50%);
 	-ms-transform: translate(0,-50%);
