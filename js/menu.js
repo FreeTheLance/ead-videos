@@ -15,7 +15,9 @@ jQuery(function () {
 	}
 
 	function closeMenu(e) {
-		$navMenu.removeClass('active')
+		if (!$navMenu.find(':active').length) {
+			$navMenu.removeClass('active')
+		}
 	}
 
 	function saveDestination() {
