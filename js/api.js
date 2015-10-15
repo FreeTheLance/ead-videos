@@ -53,6 +53,19 @@ function finish(gohome) {
   }
 }
 
+var remember = {};
+
+function getRemember(prop, otherwise) {
+  var result = otherwise;
+
+  if (remember[prop] !== undefined) {
+    result = remember[prop];
+    delete remember[prop];
+  }
+
+  return result;
+}
+
 /**
  * Go to a video.
  * @param {string} id ID of the video to go to.
@@ -60,7 +73,7 @@ function finish(gohome) {
  * @param {boolean} start Wheter the video should automatically start playing.
  */
 function goTo(id, time, start, animate) {
-  animate = typeof animate == 'undefined' ? true : animate;
+  animate = typeof animate == 'undefined' ? getRemember('animate', true) : animate;
 
   var target = EADVideos.videos[id];
 
@@ -74,7 +87,7 @@ function goTo(id, time, start, animate) {
   }
 
   time = time || 0;
-  start = typeof start === 'undefined' ? !target.$element.filter('[data-manual-start]').length : start;
+  start = typeof start === 'undefined' ? getRemember('start', !target.$element.filter('[data-manual-start]').length) : start;
 
   // Pause current video, if available.
   if (EADVideos.current) {
@@ -121,6 +134,10 @@ function checkPredefinedDestination() {
 function parseHash(hash) {
   var parsed = (hash || '').match(/([a-z][a-z0-9_-]+)(?:&([0-9.]+))?/i);
 
+  if (!parsed || !parsed[1]) {
+    console.log('Not found hash: "' + hash + '"');
+  }
+
   return parsed && parsed[1] ? {
     id: parsed[1],
     time: parsed[2] || 0
@@ -155,8 +172,9 @@ function initializeVideos() {
     if (EADVideos.checkPredefinedDestination()) return;
 
     if (video.next) {
-      var targetInfo = EADVideos.parseHash(video.next);
-      EADVideos.goTo(targetInfo.id, targetInfo.time, true, false);
+      remember.start = true;
+      remember.animate = false;
+      window.location.hash = video.next;
     } else {
       EADVideos.finish(false);
     }
