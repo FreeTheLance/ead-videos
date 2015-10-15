@@ -77,6 +77,10 @@
      * Active hook.
      */
     function activateHook() {
+      if (this.href == window.location.href) {
+        $(window).trigger('hashchange');
+      }
+
       hideHook();
     }
 

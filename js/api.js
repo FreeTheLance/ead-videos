@@ -14,6 +14,7 @@ window.EADVideos = jQuery.extend(true, window.EADVideos || {}, {
   finish: finish,
   parseHash: parseHash,
   forceStart: false,
+  remember: {},
   checkPredefinedDestination: checkPredefinedDestination
 });
 
@@ -53,14 +54,12 @@ function finish(gohome) {
   }
 }
 
-var remember = {};
-
 function getRemember(prop, otherwise) {
   var result = otherwise;
 
-  if (remember[prop] !== undefined) {
-    result = remember[prop];
-    delete remember[prop];
+  if (EADVideos.remember[prop] !== undefined) {
+    result = EADVideos.remember[prop];
+    delete EADVideos.remember[prop];
   }
 
   return result;
@@ -172,8 +171,9 @@ function initializeVideos() {
     if (EADVideos.checkPredefinedDestination()) return;
 
     if (video.next) {
-      remember.start = true;
-      remember.animate = false;
+      EADVideos.remember.start = true;
+      EADVideos.remember.animate = false;
+      
       window.location.hash = video.next;
     } else {
       EADVideos.finish(false);
